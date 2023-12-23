@@ -1,11 +1,9 @@
 import { useState } from "react";
 
-const Header = ({ name }) => <h2>{name}</h2>;
-
-const Anecdote = ({ text, votesCount }) => (
+const Anecdote = ({ inp, totalVotes }) => (
   <div>
-    <p>{text}</p>
-    <p>has {votesCount} votes</p>
+    <p>{inp}</p>
+    <p>has {totalVotes} votes</p>
   </div>
 );
 
@@ -25,7 +23,9 @@ const Winner = ({ anecdotes, allVotes }) => {
   );
 };
 
-const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>;
+const Header = ({ name }) => <h2>{name}</h2>;
+
+const Button = ({ onClick, inp }) => <button onClick={onClick}>{inp}</button>;
 
 const App = () => {
   const handleVoteClick = () => {
@@ -55,9 +55,9 @@ const App = () => {
   return (
     <div>
       <Header name="Anecdote of the day" />
-      <Anecdote text={anecdotes[selected]} votesCount={allVotes[selected]} />
-      <Button onClick={handleVoteClick} text="vote" />
-      <Button onClick={handleAnecdoteClick} text="Next anecdote" />
+      <Anecdote inp={anecdotes[selected]} totalVotes={allVotes[selected]} />
+      <Button onClick={handleVoteClick} inp="vote" />
+      <Button onClick={handleAnecdoteClick} inp="Next anecdote" />
 
       <Header name="Anecdote with most votes" />
       <Winner anecdotes={anecdotes} allVotes={allVotes} />
